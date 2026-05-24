@@ -16,6 +16,7 @@
 //   - github.com/ultramcu/go-imgfeed/openaidapter   (openai/openai-go)
 //   - github.com/ultramcu/go-imgfeed/lcadapter      (tmc/langchaingo)
 //   - github.com/ultramcu/go-imgfeed/anthropicadapter (anthropics/anthropic-sdk-go)
+//   - github.com/ultramcu/go-imgfeed/genaidapter    (google.golang.org/genai, Gemini)
 //
 // Each adapter imports only its own SDK, so importing the core (or one
 // adapter) never pulls in the others.

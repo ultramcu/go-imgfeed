@@ -36,8 +36,9 @@ url := img.DataURL()                       // ready for any image_url field
 - **Cost estimate** — `EstimateTokens(model)` implements OpenAI's tile-based
   image formula (detail-aware), so you can predict input cost up front.
 - **Provider-agnostic** — the same loaded image drops into the official OpenAI
-  SDK, the community `sashabaranov/go-openai`, `langchaingo`, or the Anthropic
-  SDK. Switch providers without re-writing your image plumbing.
+  SDK, the community `sashabaranov/go-openai`, `langchaingo`, the Anthropic SDK,
+  or Google's `genai` (Gemini). Switch providers without re-writing your image
+  plumbing.
 - **No bloat** — the core package imports only `golang.org/x/image`. Each SDK
   adapter lives in its own subpackage and imports only its own SDK, so you pull
   in just the one you use.
@@ -140,13 +141,29 @@ msg := anthropic.NewUserMessage(
 )
 ```
 
+### Google Gemini — `google.golang.org/genai`
+
+```go
+import (
+    "github.com/ultramcu/go-imgfeed"
+    "github.com/ultramcu/go-imgfeed/genaidapter"
+    "google.golang.org/genai"
+)
+
+img, _ := imgfeed.FromFile("photo.png")
+content := genai.NewContentFromParts([]*genai.Part{
+    genaidapter.Text("What is in this image?"),
+    genaidapter.Part(img), // inline image Blob
+}, genai.RoleUser)
+```
+
 ## Notes
 
 - `EstimateTokens` is an approximation: it follows OpenAI's documented tile
   formula and varies by model (the `mini`/`nano` tiers scale up to match
   text-token pricing). Unknown models fall back to the `gpt-4o` cost.
-- Anthropic has no per-image "detail" concept, so `WithDetail` is ignored by
-  `anthropicadapter`.
+- Anthropic and Gemini have no per-image "detail" concept, so `WithDetail` is
+  ignored by `anthropicadapter` and `genaidapter`.
 - Decoders for PNG, JPEG, GIF, WebP, BMP and TIFF are registered; re-encoding
   (for resizing/byte budgets) outputs PNG or JPEG.
 
