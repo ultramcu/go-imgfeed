@@ -2,6 +2,7 @@
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/ultramcu/go-imgfeed.svg)](https://pkg.go.dev/github.com/ultramcu/go-imgfeed)
 [![CI](https://github.com/ultramcu/go-imgfeed/actions/workflows/ci.yml/badge.svg)](https://github.com/ultramcu/go-imgfeed/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/ultramcu/go-imgfeed/graph/badge.svg)](https://codecov.io/gh/ultramcu/go-imgfeed)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ultramcu/go-imgfeed)](https://goreportcard.com/report/github.com/ultramcu/go-imgfeed)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
